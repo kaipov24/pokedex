@@ -13,17 +13,6 @@ type cliCommand struct {
 	callback    func() error
 }
 
-func commandExit() error {
-	fmt.Println("Closing the Pokedex... Goodbye!")
-	os.Exit(0)
-	return nil
-}
-
-func commandHelp() error {
-	fmt.Println("Displays a help message")
-	return nil
-}
-
 func keyContains(m map[string]cliCommand, substr string) bool {
 	for key := range m {
 		if strings.Contains(key, substr) {
