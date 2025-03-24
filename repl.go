@@ -48,7 +48,12 @@ func startRepl(cfg *config) {
 		"map": {
 			name:        "map",
 			description: "Display the names of 20 location areas",
-			callback:    commandMap,
+			callback:    commandMapf,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Display the names of 20 location areas in reverse",
+			callback:    commandMapb,
 		},
 	}
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/kaipov24/pokedexcli/internal/pokeapi"
@@ -12,5 +13,6 @@ func main() {
 		pokeapiClient: pokeClient,
 	}
 
+	fmt.Println(pokeClient)
 	startRepl(cfg)
 }
