@@ -14,7 +14,7 @@ type LocationResponse struct {
 	} `json:"results"`
 }
 
-func commandMap() error {
+func commandMap(cfg *config) error {
 	const baseURL = "https://pokeapi.co/api/v2/location-area/"
 	resp, err := http.Get(baseURL)
 	if err != nil {

@@ -5,12 +5,14 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/kaipov24/pokedexcli/internal/pokeapi"
 )
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func keyContains(m map[string]cliCommand, substr string) bool {
@@ -22,7 +24,13 @@ func keyContains(m map[string]cliCommand, substr string) bool {
 	return false
 }
 
-func startRepl() {
+type config struct {
+	pokeapiClient    pokeapi.Client
+	nextLocationsURL *string
+	prevLocationsURL *string
+}
+
+func startRepl(cfg *config) {
 
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
@@ -52,7 +60,7 @@ func startRepl() {
 
 		command := reader.Text()
 		if keyContains(mapCliCommands, command) {
-			mapCliCommands[command].callback()
+			mapCliCommands[command].callback(cfg)
 
 		} else {
 			fmt.Println("Unknown command")
