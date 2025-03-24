@@ -48,6 +48,11 @@ func startRepl() {
 			description: "Show this help message",
 			callback:    commandHelp,
 		},
+		"map": {
+			name:        "map",
+			description: "Display the names of 20 location areas",
+			callback:    commandMap,
+		},
 	}
 
 	reader := bufio.NewScanner(os.Stdin)
