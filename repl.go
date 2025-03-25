@@ -55,6 +55,11 @@ func startRepl(cfg *config) {
 			description: "Display the names of 20 location areas in reverse",
 			callback:    commandMapb,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Explore a location area",
+			callback:    commandExplore,
+		},
 	}
 
 	reader := bufio.NewScanner(os.Stdin)
