@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func commandExplore(cfg *config) error {
+func commandExplore(cfg *config, args ...string) error {
 	fmt.Println("Exploring")
 	locationsResp, err := cfg.pokeapiClient.ListLocations(cfg.nextLocationsURL)
 	if err != nil {
