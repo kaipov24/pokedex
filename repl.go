@@ -15,15 +15,6 @@ type cliCommand struct {
 	callback    func(*config, ...string) error
 }
 
-func keyContains(m map[string]cliCommand, substr string) bool {
-	for key := range m {
-		if strings.Contains(key, substr) {
-			return true
-		}
-	}
-	return false
-}
-
 type config struct {
 	pokeapiClient    pokeapi.Client
 	nextLocationsURL *string
