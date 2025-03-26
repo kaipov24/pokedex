@@ -11,21 +11,21 @@ func commandInspect(cfg *config, args ...string) error {
 	}
 
 	name := args[0]
-	pokemonInPokedex := cfg.caughtPokemon[name]
-	if pokemonInPokedex.Name != "" {
-		fmt.Printf("Name: %v\n", pokemonInPokedex.Name)
-		fmt.Printf("Height: %v\n", pokemonInPokedex.Height)
-		fmt.Printf("Weight: %v\n", pokemonInPokedex.Weight)
-		fmt.Println("Stats:")
-		for i := 0; i < len(pokemonInPokedex.Stats); i++ {
-			fmt.Printf("  -%v: %v\n", pokemonInPokedex.Stats[i].Stat.Name, pokemonInPokedex.Stats[i].BaseStat)
-		}
-		fmt.Println("Types:")
-		for i := 0; i < len(pokemonInPokedex.Types); i++ {
-			fmt.Printf("  -%v\n", pokemonInPokedex.Types[i].Type.Name)
-		}
-	} else {
-		fmt.Println("you have not caught that pokemon")
+	pokemon, ok := cfg.caughtPokemon[name]
+	if !ok {
+		return errors.New("you have not caught that pokemon")
+	}
+
+	fmt.Println("Name:", pokemon.Name)
+	fmt.Println("Height:", pokemon.Height)
+	fmt.Println("Weight:", pokemon.Weight)
+	fmt.Println("Stats:")
+	for _, stat := range pokemon.Stats {
+		fmt.Printf("  -%s: %v\n", stat.Stat.Name, stat.BaseStat)
+	}
+	fmt.Println("Types:")
+	for _, typeInfo := range pokemon.Types {
+		fmt.Println("  -", typeInfo.Type.Name)
 	}
 
 	return nil
