@@ -9,26 +9,23 @@ import (
 	"github.com/kaipov24/pokedexcli/internal/pokeapi"
 )
 
-type pokedex struct {
-	pokemons map[string]pokeapi.Pokemon
-}
-
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config, *pokedex, ...string) error
+	callback    func(*config, ...string) error
 }
 
 type config struct {
 	pokeapiClient    pokeapi.Client
 	nextLocationsURL *string
 	prevLocationsURL *string
+	caughtPokemon    map[string]pokeapi.Pokemon
 }
 
 func startRepl(cfg *config) {
 	fmt.Println("Welcome to the Pokedex!")
 	fmt.Println("Usage:")
-	pokedex := pokedex{}
+
 	reader := bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -47,7 +44,7 @@ func startRepl(cfg *config) {
 
 		command, exists := getCommands()[commandName]
 		if exists {
-			err := command.callback(cfg, &pokedex, args...)
+			err := command.callback(cfg, args...)
 			if err != nil {
 				fmt.Println(err)
 			}
