@@ -20,10 +20,23 @@ Pokedex CLI is a command-line REPL application that allows users to explore Pok�
 
 2. Build the project:
    ```bash
-   go build -o pokedexcli
+   go build pokedexcli
    ```
 
 3. Run the application:
    ```bash
-   ./pokedexcli
+   go run .
    ```
+
+## Commands
+
+| Command                  | Description                                      |
+|--------------------------|--------------------------------------------------|
+| `help`                   | Displays a help message with available commands. |
+| `explore <location_name>`| Explore a location to see available Pokémon.     |
+| `map`                    | Get the next page of locations.                 |
+| `mapb`                   | Get the previous page of locations.             |
+| `catch <pokemon_name>`   | Attempt to catch a Pokémon.                     |
+| `inspect <pokemon_name>` | View details about a caught Pokémon.            |
+| `pokedex`                | Display all caught Pokémon.                     |
+| `exit`                   | Exit the application.                           |
